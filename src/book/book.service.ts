@@ -23,14 +23,14 @@ export class BookService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} book`;
+    return this.bookRepository.findBy({ id });
   }
 
   update(id: number, updateBookDto: UpdateBookDto) {
-    return `This action updates a #${id} book`;
+    return this.bookRepository.update({ id }, { ...updateBookDto });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} book`;
+    return this.bookRepository.delete({ id });
   }
 }

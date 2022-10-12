@@ -9,3 +9,11 @@ export type CreateBookParams = {
   reviews: string;
   createdAt: Date;
 };
+
+export type User = {
+  id: number;
+  name: string;
+  phone: number;
+  password: string;
+  email: string;
+};
