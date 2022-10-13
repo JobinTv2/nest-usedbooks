@@ -46,33 +46,34 @@ export class UserService {
   }
 
   login(loginUserDto: LoginUserDto) {
-    console.log(process.env.JWT_SCRETE);
     return this.validateUser(loginUserDto.email, loginUserDto.password).then(
-      (user: User) => {
+      (user: User): string | PromiseLike<string> | { error: string } => {
         if (user) {
           return this.authService.generateJWT(user);
         }
-        return 'Invalid credentials';
+        return { error: 'Invalid credentials' };
       },
     );
   }
 
-  validateUser(email: string, password: string): Promise<any> {
-    return this.findByMail(email).then((user: User) => {
-      return this.authService
-        .comparePasswords(password, user[0].password)
-        .then((match: boolean) => {
-          if (match) {
-            const { password, ...rest } = user;
-            return user;
-          } else {
-            throw Error;
-          }
-        });
-    });
+  validateUser(email: string, password: string) {
+    return this.findByMail(email)
+      .then((user: User) => {
+        if (!user) return null;
+        return this.authService
+          .comparePasswords(password, user.password)
+          .then((match: boolean) => {
+            if (match) {
+              return user;
+            }
+            return false;
+          })
+          .catch((err) => err);
+      })
+      .catch((err) => err);
   }
 
   findByMail(email: string): Promise<any> {
-    return this.userRepository.findBy({ email });
+    return this.userRepository.findOneBy({ email });
   }
 }
