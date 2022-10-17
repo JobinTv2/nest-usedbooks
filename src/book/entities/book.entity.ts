@@ -22,4 +22,6 @@ export class Book {
   reviews: string;
   @Column()
   createdAt: Date;
+  @Column()
+  author: string;
 }

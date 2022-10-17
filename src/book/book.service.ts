@@ -14,6 +14,7 @@ export class BookService {
     const newBook = this.bookRepository.create({
       ...createBookDto,
       createdAt: new Date(),
+      rating: 2.0,
     });
     return this.bookRepository.save(newBook);
   }

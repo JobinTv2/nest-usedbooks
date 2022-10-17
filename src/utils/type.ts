@@ -8,6 +8,7 @@ export type CreateBookParams = {
   categroy: string;
   reviews: string;
   createdAt: Date;
+  author: string;
 };
 
 export type User = {

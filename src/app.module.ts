@@ -15,7 +15,7 @@ import { UserModule } from './user/user.module';
       username: 'postgres',
       password: 'postgres',
       database: 'usedBooksDB',
-      synchronize: true,
+      synchronize: false,
       entities: [__dirname + '/**/*.entity{.ts, .js}'],
       autoLoadEntities: true,
     }),
