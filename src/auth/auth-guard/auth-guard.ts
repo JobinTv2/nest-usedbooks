@@ -21,10 +21,10 @@ export class AuthGuard implements CanActivate {
       try {
         result = this.authService.verifyToken(token);
       } catch (err) {
-        throw new UnauthorizedException('Token Not Present');
+        throw new UnauthorizedException('Invalid Authorization');
       }
       if (result === undefined) {
-        throw new UnauthorizedException('Token Not Present');
+        throw new UnauthorizedException('Invalid Authorization');
       } else {
         return true;
       }

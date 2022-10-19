@@ -55,17 +55,28 @@ export class UserService {
 
   login(loginUserDto: LoginUserDto) {
     return this.validateUser(loginUserDto.email, loginUserDto.password).then(
-      (
+      async (
         user: User,
-      ):
-        | string
+      ): Promise<
         | PromiseLike<string>
-        | { error: string; statusCode: number } => {
+        | { error: string; statusCode: number }
+        | { token: string; email: string }
+      > => {
         if (user) {
-          return this.authService.generateJWT(user);
+          const result = await this.authService
+            .generateJWT(user)
+            .then((response) => {
+              return response;
+            });
+          const { password, ...rest } = await this.findByMail(
+            loginUserDto.email,
+          );
+          return {
+            ...rest,
+            token: result,
+          };
         }
         throw new UnauthorizedException('Invalid');
-        return { statusCode: 401, error: 'Invalid credentials' };
       },
     );
   }
