@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -55,11 +55,17 @@ export class UserService {
 
   login(loginUserDto: LoginUserDto) {
     return this.validateUser(loginUserDto.email, loginUserDto.password).then(
-      (user: User): string | PromiseLike<string> | { error: string } => {
+      (
+        user: User,
+      ):
+        | string
+        | PromiseLike<string>
+        | { error: string; statusCode: number } => {
         if (user) {
           return this.authService.generateJWT(user);
         }
-        return { error: 'Invalid credentials' };
+        throw new UnauthorizedException('Invalid');
+        return { statusCode: 401, error: 'Invalid credentials' };
       },
     );
   }

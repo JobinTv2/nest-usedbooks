@@ -22,4 +22,8 @@ export class AuthService {
       return match;
     });
   }
+
+  verifyToken(token: string): Promise<boolean> {
+    return this.jwtService.verify(token);
+  }
 }
