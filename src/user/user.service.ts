@@ -48,8 +48,15 @@ export class UserService {
   async update(id: number, updateUserDto: UpdateUserDto) {
     this.userRepository.update({ id }, updateUserDto);
     const updatedUser: User = await this.userRepository.findOneBy({ id });
-    const { password, ...rest } = updatedUser;
-    return rest;
+
+    const user = {
+      id: updatedUser.id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      phone: updatedUser.phone,
+      address: updatedUser.address,
+    };
+    return user;
   }
 
   remove(id: number) {
