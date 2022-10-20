@@ -6,7 +6,7 @@ export class Order {
   id: number;
 
   @Column()
-  transaction_id: number;
+  transaction_id: string;
 
   @Column()
   user_id: number;

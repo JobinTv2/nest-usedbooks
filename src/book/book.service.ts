@@ -27,8 +27,13 @@ export class BookService {
     return this.bookRepository.findBy({ id });
   }
 
-  update(id: number, updateBookDto: UpdateBookDto) {
-    return this.bookRepository.update({ id }, { ...updateBookDto });
+  async update(id: number, updateBookDto: UpdateBookDto) {
+    if (updateBookDto.rating > 5) {
+      updateBookDto.rating = 5;
+    }
+    await this.bookRepository.update({ id }, { ...updateBookDto });
+    const bookDetails = this.bookRepository.findOneBy({ id });
+    return bookDetails;
   }
 
   remove(id: number) {
