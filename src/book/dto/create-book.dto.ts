@@ -9,4 +9,5 @@ export class CreateBookDto {
   reviews: string;
   createdAt: Date;
   author: string;
+  price: number;
 }

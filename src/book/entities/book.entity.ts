@@ -24,4 +24,6 @@ export class Book {
   createdAt: Date;
   @Column()
   author: string;
+  @Column()
+  price: number;
 }
