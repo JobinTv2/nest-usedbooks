@@ -17,4 +17,5 @@ export type User = {
   phone: number;
   password: string;
   email: string;
+  address?: string;
 };

@@ -4,4 +4,5 @@ export class CreateUserDto {
   phone: number;
   password: string;
   email: string;
+  address?: string;
 }
