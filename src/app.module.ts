@@ -17,7 +17,7 @@ import { OrderModule } from './order/order.module';
       username: 'postgres',
       password: 'postgres',
       database: 'usedBooksDB',
-      synchronize: false,
+      synchronize: true,
       entities: [__dirname + '/**/*.entity{.ts, .js}'],
       autoLoadEntities: true,
     }),

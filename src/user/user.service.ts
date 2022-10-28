@@ -13,6 +13,7 @@ export class UserService {
     @InjectRepository(User) private readonly userRepository: Repository<User>,
     private authService: AuthService,
   ) {}
+
   create(createUserDto: CreateUserDto) {
     return this.authService
       .hashPassword(createUserDto.password)
