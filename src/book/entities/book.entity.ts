@@ -16,12 +16,12 @@ export class Book {
   is_sold: boolean;
   @Column()
   owner_id: number;
-  @Column()
+  @Column({nullable:true})
   category: string;
   @Column()
   reviews: string;
-  @Column()
-  createdAt: Date;
+  @Column({nullable: true})
+  createdAt: Date | null;
   @Column()
   author: string;
   @Column()
