@@ -3,11 +3,14 @@ import { UserService } from './user.service';
 
 describe('UserService', () => {
   let service: UserService;
-
+  const userMockService = {};
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [UserService],
-    }).compile();
+    })
+      .overrideProvider(UserService)
+      .useValue(userMockService)
+      .compile();
 
     service = module.get<UserService>(UserService);
   });

@@ -12,7 +12,7 @@ import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
-import { AuthGuard } from 'src/auth/auth-guard/auth-guard';
+import { AuthGuard } from '../auth/auth-guard/auth-guard';
 
 @Controller('user')
 export class UserController {

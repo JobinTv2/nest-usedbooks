@@ -11,7 +11,7 @@ import {
 import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
-import { AuthGuard } from 'src/auth/auth-guard/auth-guard';
+import { AuthGuard } from '../auth/auth-guard/auth-guard';
 
 @Controller('order')
 export class OrderController {
