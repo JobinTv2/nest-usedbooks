@@ -12,7 +12,7 @@ export class OrderService {
     private readonly orderRepository: Repository<Order>,
   ) {}
   create(createOrderDto: CreateOrderDto) {
-    const {  ...newOrder } = createOrderDto;
+    const { ...newOrder } = createOrderDto;
     return this.orderRepository.save(newOrder);
   }
 
