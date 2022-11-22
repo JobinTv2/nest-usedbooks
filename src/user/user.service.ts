@@ -30,6 +30,7 @@ export class UserService {
             return rest;
           })
           .catch((err) => {
+            console.log(err);
             return { error: err };
           });
       })
@@ -38,12 +39,10 @@ export class UserService {
       });
   }
 
-  findAll() {
-    return `This action returns all user`;
-  }
-
   async findOne(id: number) {
-    return await this.userRepository.findOneBy({ id });
+    const user = await this.userRepository.findOneBy({ id });
+    const { password, ...rest } = user;
+    return rest;
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {

@@ -28,11 +28,6 @@ export class UserController {
     return this.userService.login(loginUserDto);
   }
 
-  @Get()
-  findAll() {
-    return this.userService.findAll();
-  }
-
   @UseGuards(AuthGuard)
   @Get(':id')
   findOne(@Param('id') id: string) {
