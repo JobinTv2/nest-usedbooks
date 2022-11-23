@@ -23,16 +23,10 @@ export class UserService {
         newUser.email = createUserDto.email;
         newUser.phone = createUserDto.phone;
         newUser.password = hashPassword;
-        return this.userRepository
-          .save(newUser)
-          .then((user: User) => {
-            const { password, ...rest } = user;
-            return rest;
-          })
-          .catch((err) => {
-            console.log(err);
-            return { error: err };
-          });
+        return this.userRepository.save(newUser).then((user: User) => {
+          const { password, ...rest } = user;
+          return rest;
+        });
       })
       .catch((err) => {
         return { error: 'Password is not present' };

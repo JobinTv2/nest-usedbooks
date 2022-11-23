@@ -100,6 +100,20 @@ describe('UserService', () => {
     });
   });
 
+  it('should not create user entry if mandatory data is passed', async () => {
+    const user = {
+      name: 'User 1',
+      email: 'user16@gmail.com',
+      phone: 8789548789,
+      address: 'Test address',
+      password: '',
+    };
+    const { password, address, ...rest } = user;
+    expect(await service.create(rest)).toEqual({
+      error: 'Password is not present',
+    });
+  });
+
   it('should update a user', async () => {
     expect(await service.update(4, { name: 'User 1 updated' })).toEqual({
       id: 4,
