@@ -132,4 +132,31 @@ describe('UserService', () => {
       password: '$2b$12$HwHmdS5Z12Tzt6gOI1sZyelY8sSo04Qpw7T1Ln6ID9Z2sZSa4lVLW',
     });
   });
+
+  it('should return user if email and password is correct', async () => {
+    expect(await service.validateUser('abcd@example.com', 'user1&123')).toEqual(
+      {
+        id: 4,
+        name: 'User 1 updated',
+        phone: 9099099009,
+        address: '',
+        token: '',
+        email: 'abcd@example.com',
+        password:
+          '$2b$12$HwHmdS5Z12Tzt6gOI1sZyelY8sSo04Qpw7T1Ln6ID9Z2sZSa4lVLW',
+      },
+    );
+  });
+
+  it('should return false if wrong email is passed', async () => {
+    expect(
+      await service.validateUser('falsemail@example.com', '12345'),
+    ).toEqual(false);
+  });
+
+  it('should return false if wrong password is passed', async () => {
+    expect(
+      await service.validateUser('abcd@example.com', 'incorrectpassword'),
+    ).toEqual(false);
+  });
 });

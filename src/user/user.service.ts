@@ -88,20 +88,20 @@ export class UserService {
   }
 
   validateUser(email: string, password: string) {
-    return this.findByMail(email)
-      .then((user: User) => {
-        if (!user) return null;
-        return this.authService
-          .comparePasswords(password, user.password)
-          .then((match: boolean) => {
-            if (match) {
-              return user;
-            }
-            return false;
-          })
-          .catch((err) => err);
-      })
-      .catch((err) => err);
+    return this.findByMail(email).then((user: User) => {
+      if (!user) return null;
+      return this.authService
+        .comparePasswords(password, user.password)
+        .then((match: boolean) => {
+          if (match) {
+            return user;
+          }
+          return false;
+        })
+        .catch((err) => {
+          if (err) return false;
+        });
+    });
   }
 
   findByMail(email: string): Promise<any> {
