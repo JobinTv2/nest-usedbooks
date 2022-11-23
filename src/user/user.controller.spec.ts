@@ -54,9 +54,6 @@ describe('UserController', () => {
       const { password, token, ...rest } = result[0];
       return { id, ...rest };
     }),
-    remove: jest.fn((id) => {
-      return users.filter((user) => user.id !== id);
-    }),
   };
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -127,9 +124,5 @@ describe('UserController', () => {
       email: 'abcd@example.com',
       address: null,
     });
-  });
-
-  it('should delete user', () => {
-    expect(controller.remove('4')).toEqual([]);
   });
 });

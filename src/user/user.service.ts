@@ -59,10 +59,6 @@ export class UserService {
     return user;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
-  }
-
   login(loginUserDto: LoginUserDto) {
     return this.validateUser(loginUserDto.email, loginUserDto.password).then(
       async (
