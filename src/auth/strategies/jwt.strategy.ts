@@ -14,7 +14,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validateUser(email: string, password: string) {
-    console.log('h');
     return this.userService
       .findByMail(email)
       .then((user: User) => {

@@ -10,7 +10,6 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
   }
 
   validateUser(email: string, password: string) {
-    console.log('hii');
     return this.userService
       .findByMail(email)
       .then((user: User) => {
